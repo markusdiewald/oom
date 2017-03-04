@@ -10,18 +10,15 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            var stats = new[]
-            {
-                new Stats("Mistelbach Mustangs", "St. Pölten Dragons", 98, 76),
-                new Stats("Mistelbach Mustangs", "DC Timberwolves Vienna", 102, 98),
-            };
+            Patient patient01 = new Patient ("Mustermann", "Max", "0123456789", "2017123456", 19600802, 123402081960, 'M');
+            
+            Console.WriteLine($"Patientenname: {patient01.Firstname} {patient01.Lastname}\nPID: {patient01.HospitalNumber}\nFallzahl: {patient01.AccountNumber}\nGeschlecht: {patient01.Gender}\n");
 
-            foreach (var x in stats)
-            {
-                Console.WriteLine("{0}:{1} {2}:{3}\n", x.Hometeam, x.Awayteam, x.Score_Hometeam, x.Score_Awayteam);
-            }
+            patient01.UpdateHospitalNumber("9876543210");
+            patient01.Gender = 'M';
 
-
+            Console.WriteLine($"Patientenname: {patient01.Firstname} {patient01.Lastname}\nPID: {patient01.HospitalNumber}\nFallzahl: {patient01.AccountNumber}\nGeschlecht: {patient01.Gender}\n");
+                        
         }
     }
 }
