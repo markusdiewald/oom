@@ -6,39 +6,30 @@ using System.Threading.Tasks;
 
 namespace Task2
 {
-    public class Patient
+    public class Patient : Person, IDemographicInfo
     {
-        public Patient(string lastname, string firstname, string hospitalNumber, string accountNumber, int dateOfBirth, long socialSecurity, char gender )
+        public static int patientID;
+        
+        public Patient(string lastname, string firstname, string hospitalNumber, string accountNumber, int dateOfBirth, long socialSecurity, char gender ) : base(lastname, firstname, dateOfBirth, gender)
         {
-            if (string.IsNullOrWhiteSpace(lastname)) throw new ArgumentException("Lastname must not be empty.", nameof(lastname));
-            if (string.IsNullOrWhiteSpace(firstname)) throw new ArgumentException("Firstname must not be empty.", nameof(firstname));
             if (string.IsNullOrWhiteSpace(hospitalNumber)) throw new ArgumentException("Hospitalnumber must not be empty.", nameof(hospitalNumber));
             if (string.IsNullOrWhiteSpace(accountNumber)) throw new ArgumentException("Accountnumber must not be empty.", nameof(accountNumber));
 
-            _Lastname = lastname;
-            _Firstname = firstname;
+            patientID++;
+            _patientID = patientID;
             _HospitalNumber = hospitalNumber;
             _AccountNumber = accountNumber;
-            _DateOfBirth = dateOfBirth;
             _SocialSecurity = socialSecurity;
-            _Gender = gender;
+
         }
 
+        private int _patientID;
 
-        private string _Lastname;
-
-        public string Lastname
+        public int PatientID
         {
-            get { return _Lastname; }
+            get { return _patientID; }
         }
-
-        private string _Firstname;
-
-        public string Firstname
-        {
-            get { return _Firstname; }
-        }
-
+        
         private string _HospitalNumber;
 
         public string HospitalNumber
@@ -52,29 +43,14 @@ namespace Task2
         {
             get { return _AccountNumber; }
         }
-
-        private int _DateOfBirth;
-
-        public int DateOfBirth
-        {
-            get { return _DateOfBirth; }
-            set { _DateOfBirth = DateOfBirth; }
-        }
-
-        private long _SocialSecurity;
+              
+       private long _SocialSecurity;
 
         public long SocialSecurity
         {
             get { return _SocialSecurity; }
         }
-
-        private char _Gender;
-
-        public char Gender
-        {
-            get { return _Gender; }
-            set { _Gender = Gender; }
-        }
+        
 
         public void UpdateHospitalNumber (string newHospitalNumber)
         {
@@ -82,6 +58,10 @@ namespace Task2
             _HospitalNumber = newHospitalNumber;
         }
 
+        public new void PrintDemographicData ()
+        {
+            Console.WriteLine($"PersonID: {PersonID}\nPatientID: {PatientID}\nPatientenname: {Firstname} {Lastname}\nPID: {HospitalNumber}\nFallzahl: {AccountNumber}\nGeschlecht: {Gender}\n");
+        }
 
 
     }

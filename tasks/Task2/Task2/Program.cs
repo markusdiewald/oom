@@ -10,15 +10,19 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            Patient patient01 = new Patient ("Mustermann", "Max", "0123456789", "2017123456", 19600802, 123402081960, 'M');
-            
-            Console.WriteLine($"Patientenname: {patient01.Firstname} {patient01.Lastname}\nPID: {patient01.HospitalNumber}\nFallzahl: {patient01.AccountNumber}\nGeschlecht: {patient01.Gender}\n");
+            var patients = new IDemographicInfo[]
+            {
+                new Patient("Mustermann", "Max", "0000000001", "2017000001", 19600802, 123402081960, 'M'),
+                new Patient("Test", "Heinz", "0000000002", "2017000002", 19700901, 987601091970, 'M'),
+                new Person("Testperson", "Harald", 19850613, 'M'),
+                new Person("Testperson2", "Richard", 19850613, 'M')
+            };
 
-            patient01.UpdateHospitalNumber("9876543210");
-            patient01.Gender = 'M';
-
-            Console.WriteLine($"Patientenname: {patient01.Firstname} {patient01.Lastname}\nPID: {patient01.HospitalNumber}\nFallzahl: {patient01.AccountNumber}\nGeschlecht: {patient01.Gender}\n");
-                        
+            foreach(var x in patients)
+            {
+                x.PrintDemographicData();
+            }
+                                    
         }
     }
 }
