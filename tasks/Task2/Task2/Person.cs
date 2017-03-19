@@ -14,6 +14,7 @@ namespace Task2
         {
             if (string.IsNullOrWhiteSpace(lastname)) throw new ArgumentException("Lastname must not be empty.", nameof(lastname));
             if (string.IsNullOrWhiteSpace(firstname)) throw new ArgumentException("Firstname must not be empty.", nameof(firstname));
+            if (gender != 'M' && gender != 'W') throw new ArgumentException("Gender is not in the correct format, choose M or W", nameof(gender));
 
             personID++;
             _personID = personID;
