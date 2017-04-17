@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
+using System.Reactive.Linq;
+using System.Reactive.Subjects;
 
 
 
@@ -24,6 +26,29 @@ namespace Task2
                 new Person("Test", "Person", 19801121, 'W')
             };
 
+            /************** Push Test Start ****************************************************************/
+
+            //Push.Run();
+
+            /************** Push Test End ******************************************************************/
+
+
+            /************** Asynchronous Test Start ********************************************************/
+
+            AsynchronousTest.Start();
+            Console.WriteLine("Meanwhile start counting in main...");
+            for (int i = 0; i < 20; i++)
+            {
+                System.Threading.Thread.Sleep(250);
+                Console.WriteLine($"{i}");
+            }
+            Console.WriteLine("...End");
+
+            /************** Asynchronous Test End **********************************************************/
+
+            /************** Json Serialization Begin *******************************************************/
+
+            /*
             var jsonsettings = new JsonSerializerSettings() { Formatting = Formatting.Indented, TypeNameHandling = TypeNameHandling.Auto };
             Console.WriteLine(JsonConvert.SerializeObject(patients, jsonsettings));
             
@@ -33,6 +58,9 @@ namespace Task2
             var textFromFile = File.ReadAllText(@"C:\temp\patients.json");
             var itemsFromFile = JsonConvert.DeserializeObject<IDemographicInfo[]>(textFromFile, jsonsettings);
             foreach (var x in itemsFromFile) x.PrintDemographicData();    
+            */
+
+            /************** Json Serialization End *********************************************************/
         }
     }    
 }
